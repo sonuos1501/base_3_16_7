@@ -37,7 +37,7 @@ env_state.freezed.dart
 /build/
 .fvm/flutter_sdk
 /ios/Podfile.lock
-/lib/generated/
+/lib/gen/
 
 # Symbolication related
 app.*.symbols

@@ -10,7 +10,7 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   exclude: 
-    - 'lib/generated'
+    - 'lib/gen'
     - lib/**/*freezed.dart
     - lib/**/*g.dart
 linter:

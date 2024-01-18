@@ -18,7 +18,7 @@ targets:
         generate_for:
           include:
             - lib/**/*state.dart
-            - lib/generated/*
+            - lib/gen/*
             - lib/blocs/**
             - lib/models/**
             - lib/datas/shared_preferences/entities/*
@@ -50,7 +50,7 @@ targets:
           schema_mapping:
             - schema: graphql/schema.graphql
               queries_glob: graphql/*.query.graphql
-              output: lib/generated/graphql_api.graphql.dart
+              output: lib/gen/graphql_api.graphql.dart
           scalar_mapping:
             - custom_parser_import: 'package:base_3_16_7/utils/graphql/api/scalar_mapping/coercers.dart'
               graphql_type: DateTime
