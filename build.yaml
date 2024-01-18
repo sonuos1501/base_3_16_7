@@ -1,0 +1,73 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - $package$
+      - graphql/**
+      - schema.graphql
+    builders:
+      freezed:
+        generate_for:
+          include:
+            - lib/**/*state.dart
+            - lib/blocs/**
+            - lib/models/**
+            - lib/**/*bloc.dart
+            - lib/**/*cubit.dart
+      json_serializable:
+        generate_for:
+          include:
+            - lib/**/*state.dart
+            - lib/generated/*
+            - lib/blocs/**
+            - lib/models/**
+            - lib/datas/shared_preferences/entities/*
+            - lib/**/*bloc.dart
+
+        options:
+          # Options configure how source code is generated for every
+          # `@JsonSerializable`-annotated class in the package.
+          #
+          # The default value for each is listed.
+          any_map: false
+          checked: false
+          constructor: ""
+          create_factory: true
+          create_to_json: true
+          disallow_unrecognized_keys: false
+          explicit_to_json: false
+          field_rename: none
+          generic_argument_factories: false
+          ignore_unannotated: false
+          include_if_null: true
+      artemis:
+        generate_for:
+          include:
+            - lib/**
+            - graphql/*.graphql
+        options:
+          # fragments_glob: graphql/**.fragment.graphql
+          schema_mapping:
+            - schema: graphql/schema.graphql
+              queries_glob: graphql/*.query.graphql
+              output: lib/generated/graphql_api.graphql.dart
+          scalar_mapping:
+            - custom_parser_import: './lib/utils/graphql/api/scalar_mapping/coercers.dart'
+              graphql_type: DateTime
+              # graphql_type: ISO8601DateTime
+              dart_type: DateTime
+            - custom_parser_import: './lib/utils/graphql/api/scalar_mapping/coercers.dart'
+              graphql_type: DateTime
+              # graphql_type: ISO8601Date
+              dart_type: DateTime
+            - custom_parser_import: './lib/utils/graphql/api/scalar_mapping/coercers.dart'
+              graphql_type: JSON
+              dart_type: String
+            - graphql_type: LongInteger
+              dart_type: int
+            - graphql_type: Long
+              dart_type: int
+            - graphql_type: BigInt
+              dart_type: int
+            - graphql_type: Double
+              dart_type: double

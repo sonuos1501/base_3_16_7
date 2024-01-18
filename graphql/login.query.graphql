@@ -1,0 +1,34 @@
+mutation login($input: LoginInput!) {
+  login(input: $input) {
+    user {
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      recentProjects
+      name
+      email
+      password
+      passwordSalt
+      avatar
+      goolgeId
+      naverId
+      kakaoId
+      isVerify
+      avatarInfo {
+        id
+        createdAt
+        updatedAt
+        deletedAt
+        name
+        mimeType
+        fileSize
+        filePath
+        originalUrl
+        thumbUrl
+      }
+    }
+    accessToken
+    refreshToken
+  }
+}

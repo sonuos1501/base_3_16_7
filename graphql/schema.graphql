@@ -1,0 +1,481 @@
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPrevPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type BasePaginationMeta {
+  itemCount: Float!
+  totalItems: Float!
+  itemsPerPage: Float!
+  totalPages: Float!
+  currentPage: Float!
+}
+
+type Card implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  listId: String!
+  issueId: String!
+  order: Float!
+}
+
+# Node
+interface Node {
+  id: ID!
+}
+
+# A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+scalar DateTime
+
+type List implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  projectId: String!
+  name: String!
+  order: Float!
+}
+
+type Issue implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  projectId: String!
+  parentId: String
+  slug: String!
+  cardId: String!
+  type: IssueTypeEnum!
+  summary: String!
+  description: String
+  assigneeId: String
+  reporterId: String
+  priority: IssuePriority!
+  labels: [String!]!
+  attachments: [String!]!
+  originalEstimate: String
+  startDate: DateTime
+  endDate: DateTime
+  cardInfo: Card
+  projectSlug: String!
+  assigneeInfo: User
+  reporterInfo: User
+  labelsInfo: [Label!]!
+  attachmentInfo: [Media!]
+}
+
+enum IssueTypeEnum {
+  task
+  bug
+}
+
+enum IssuePriority {
+  low
+  medium
+  high
+}
+
+type Media implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  mimeType: String!
+  fileSize: Float!
+  filePath: String!
+  originalUrl: String!
+  thumbUrl: String!
+}
+
+type Project implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  description: String
+  thumb: String
+  leader: String
+  defaultAssignee: String
+  slug: String!
+  workspaceId: String!
+  thumbInfo: Media
+  leaderInfo: User
+  defaultAssigneeInfo: User
+  countOpenIssue: Float!
+  countDoneIssue: Float!
+  isAdmin: ProjectRole!
+}
+
+enum ProjectRole {
+  admin
+  member
+  viewer
+}
+
+type ProjectConnection {
+  items: [Project!]
+  meta: BasePaginationMeta!
+}
+
+type ProjectMember implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  projectId: String!
+  userId: String!
+  role: ProjectRole!
+  userInfo: User
+}
+
+type ProjectMemberConnection {
+  items: [ProjectMember!]
+  meta: BasePaginationMeta!
+}
+
+type Workspace implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  slug: String!
+  avatar: String
+  creator: User
+  isAdmin: Boolean!
+  numberOfMembers: Float!
+  avatarInfo: Media
+}
+
+type WorkspaceConnection {
+  items: [Workspace!]
+  meta: BasePaginationMeta!
+}
+
+type User implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  recentProjects: [String!]!
+  name: String!
+  email: String!
+  password: String
+  passwordSalt: String
+  avatar: String
+  goolgeId: String
+  naverId: String
+  kakaoId: String
+  isVerify: Boolean!
+  avatarInfo: Media
+}
+
+type UserConnection {
+  items: [User!]
+  meta: BasePaginationMeta!
+}
+
+type Comment implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  text: String!
+  userId: String!
+  issueId: String!
+  userInfo: User
+}
+
+type CommentConnection {
+  items: [Comment!]
+  meta: BasePaginationMeta!
+}
+
+type WorkspaceMember implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  workspaceId: String!
+  userId: String!
+  isAdmin: Boolean!
+  userInfo: User!
+}
+
+type WorkspaceMemberConnection {
+  items: [WorkspaceMember!]
+  meta: BasePaginationMeta!
+}
+
+type Label implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+}
+
+type LabelConnection {
+  items: [Label!]
+  meta: BasePaginationMeta!
+}
+
+type UserRecentWork {
+  projects: [Project!]
+  issues: [Issue!]
+}
+
+# AuthConnection
+type AuthConnection {
+  accessToken: String!
+  refreshToken: String!
+  user: User!
+}
+
+type Query {
+  # Get current user infomation
+  me: User!
+  searchUsers(
+    limit: Int = 20
+    page: Int = 1
+    search: String
+    workspaceId: String
+    projectId: String
+  ): UserConnection!
+  user(id: String!): User!
+  myRecentWorks: UserRecentWork!
+  myProjects(
+    limit: Int = 20
+    page: Int = 1
+    sorts: [SortInput!] = []
+    search: String
+    workspaceId: String
+  ): ProjectConnection!
+  project(slug: String, id: String): Project
+  projectMembers(
+    limit: Int = 20
+    page: Int = 1
+    search: String
+    projectId: String!
+    role: ProjectRole
+  ): ProjectMemberConnection!
+  checkCanLeaveProject(projectId: String!): Boolean!
+  workspace(slug: String, id: String): Workspace
+  myWorkspaces(limit: Int = 20, page: Int = 1): WorkspaceConnection!
+  workspaceMembers(
+    limit: Int = 20
+    page: Int = 1
+    workspaceId: String!
+    isAdmin: Boolean
+    search: String
+  ): WorkspaceMemberConnection!
+  checkCanLeaveWorkspace(workspaceId: String!): Boolean!
+  issues(
+    projectId: String!
+    priority: IssuePriority
+    status: String
+    type: IssueTypeEnum
+    assigneeId: [String!]
+    dueThisWeek: Boolean
+    labels: [String!]
+    search: String
+  ): [Issue!]!
+  issue(slug: String, id: String): Issue!
+  projectLists(projectId: String!): [List!]!
+  labels(limit: Int = 20, page: Int = 1, search: String): LabelConnection!
+  comments(
+    limit: Int = 20
+    page: Int = 1
+    issueId: String!
+    sort: String
+  ): CommentConnection!
+  comment(id: String!): Comment!
+}
+
+input SortInput {
+  field: String!
+  direction: String!
+}
+
+type Mutation {
+  # Signup with email
+  signUp(input: SignUpInput!): User!
+
+  # Login with email
+  login(input: LoginInput!): AuthConnection!
+  refreshToken: AuthConnection!
+
+  # Signup by social.
+  signUpBySocial(input: SNSSignUpInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+  withdrawUser: String!
+  createProject(input: CreateProjectInput!): Project!
+  updateProject(input: UpdateProjectInput!): Project!
+  deleteProject(id: String!): String!
+  createProjectMember(input: CreateProjectMemberInput!): ProjectMember!
+  updateProjectMember(role: ProjectRole!, id: String!): ProjectMember!
+  deleteProjectMember(id: String!): String!
+  createWorkspace(input: CreateWorkspaceInput!): Workspace!
+  updateWorkspace(input: UpdateWorkspaceInput!): Workspace!
+  deleteWorkspace(id: String!): String!
+  createWorkspaceMember(input: CreateWorkspaceMemberInput!): WorkspaceMember!
+  updateWorkspaceMember(input: UpdateWorkspaceMemberInput!): WorkspaceMember!
+  deleteWorkspaceMember(id: String!): String!
+  createIssue(input: CreateIssueInput!): Issue!
+  updateIssue(input: UpdateIssueInput!): Issue!
+  deleteIssue(id: String!): String!
+  createList(input: CreateListInput!): List!
+  updateList(input: UpdateListInput!): List!
+  moveList(toPosition: Float!, listId: String!, projectId: String!): String!
+  deleteList(migrateId: String!, id: String!): String!
+  moveCard(cardId: String!, toList: String, toPosition: Float!): String!
+  createComment(input: CreateCommentInput!): Comment!
+  updateComment(input: UpdateCommentInput!): Comment!
+  deleteComment(id: String!): String!
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input SNSSignUpInput {
+  snsToken: String!
+  snsType: SNSType!
+}
+
+enum SNSType {
+  GOOGLE
+  KAKAO
+  NAVER
+}
+
+input UpdateUserInput {
+  id: String!
+  name: String
+  password: String
+  confirmPassword: String
+  avatar: String
+}
+
+input CreateProjectInput {
+  name: String!
+  description: String
+  slug: String!
+  thumb: String
+  workspaceId: String!
+}
+
+input UpdateProjectInput {
+  name: String
+  description: String
+  slug: String
+  thumb: String
+  id: String!
+  leader: String
+  defaultAssignee: String
+}
+
+input CreateProjectMemberInput {
+  projectId: String!
+  userId: String!
+  role: ProjectRole!
+}
+
+input CreateWorkspaceInput {
+  name: String!
+  slug: String!
+}
+
+input UpdateWorkspaceInput {
+  name: String
+  slug: String
+  id: String!
+  avatar: String
+  members: [String!]
+}
+
+input CreateWorkspaceMemberInput {
+  workspaceId: String!
+  userId: String!
+  isAdmin: Boolean!
+}
+
+input UpdateWorkspaceMemberInput {
+  id: String!
+  workspaceId: String!
+  isAdmin: Boolean!
+}
+
+input CreateIssueInput {
+  projectId: String!
+  parentId: String
+  type: IssueTypeEnum = task
+  summary: String!
+  description: String
+  assigneeId: String
+  reporterId: String
+  priority: IssuePriority = low
+  labels: [IssueLabelInput!] = []
+  attachments: [String!] = []
+  originalEstimate: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input IssueLabelInput {
+  id: String
+  name: String!
+}
+
+input UpdateIssueInput {
+  projectId: String
+  parentId: String
+  type: IssueTypeEnum = task
+  summary: String
+  description: String
+  assigneeId: String
+  reporterId: String
+  priority: IssuePriority = low
+  labels: [IssueLabelInput!] = []
+  attachments: [String!] = []
+  originalEstimate: String
+  startDate: DateTime
+  endDate: DateTime
+  id: String!
+  status: String
+}
+
+input CreateListInput {
+  name: String!
+  projectId: String!
+}
+
+input UpdateListInput {
+  name: String!
+  projectId: String!
+  id: String!
+}
+
+input CreateCommentInput {
+  text: String!
+  issueId: String!
+}
+
+input UpdateCommentInput {
+  text: String!
+  id: String!
+}
