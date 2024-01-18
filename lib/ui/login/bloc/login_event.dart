@@ -7,9 +7,6 @@ class LoginEvent with _$LoginEvent {
     required String password,
   }) = LogedInTraditional;
 
-  const factory LoginEvent.logedInWithKakao() = LogedInWithKakao;
-  const factory LoginEvent.logedInWithNaver() = LogedInWithNaver;
-  const factory LoginEvent.logedInWithGoogle() = LogedInWithGoogle;
 
   const factory LoginEvent.sawPassword({@Default(false) bool sawThePassword}) = SawPassword;
 }

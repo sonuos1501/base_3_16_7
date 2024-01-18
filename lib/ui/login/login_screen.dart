@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:theshowplayer/ui/login/login_screen_desktop.dart';
-import 'package:theshowplayer/ui/login/login_screen_ipad.dart';
-import 'package:theshowplayer/ui/login/login_screen_mobile.dart';
-import 'package:theshowplayer/utils/screen/m_screen_util.dart';
+
+import '../../utils/screen/m_screen_util.dart';
+import 'login_screen_desktop.dart';
+import 'login_screen_ipad.dart';
+import 'login_screen_mobile.dart';
+
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

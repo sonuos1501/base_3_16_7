@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../data/repository.dart';
-import '../../../models/channels/channel_info_data.dart';
 part 'authentication_bloc.freezed.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -12,7 +11,6 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc(this._repository) : super(const AuthenticationInitial()) {
     on<LoadedApp>(_loadedApp);
-    on<LoggedIn>(_loggedIn);
     on<LoggedOut>(_logout);
   }
 
@@ -28,16 +26,12 @@ class AuthenticationBloc
     final userId = await _repository.userId;
     final loginType = await _repository.loginType;
 
-    final detailChannel =
-        await getChannelInfo(accessToken: token, userId: userId);
-
     if (token.isNotEmpty) {
       return emit(
         AuthenticationState.authenticated(
           userId: userId,
           token: token,
           loginType: loginType,
-          channelInfoData: detailChannel,
         ),
       );
     }
@@ -45,48 +39,6 @@ class AuthenticationBloc
     emit(
       AuthenticationState.unAuthenticated(
         appNewIntall: await _repository.appNewIntall,
-      ),
-    );
-  }
-
-  Future<ChannelInfoData?> getChannelInfo({
-    required String accessToken,
-    required int userId,
-  }) async {
-    // try {
-    //   final res = await _repository.getChannelInfo(accessToken: accessToken, channelId: userId);
-    //   final status = res.apiStatus ?? '';
-
-    //   if (status == HttpStatus.ok.toString()) {
-    //     return res.data;
-    //   }
-
-    // } catch (_) {}
-
-    return null;
-  }
-
-  Future<void> _loggedIn(
-    LoggedIn event,
-    Emitter<AuthenticationState> emit,
-  ) async {
-    emit(const AuthenticationLoading());
-
-    await _repository.saveAuthToken(event.token ?? '');
-    await _repository.saveUserId(event.userId);
-    await _repository.saveLoginType(event.loginType);
-
-    final detailChannel = await getChannelInfo(
-      accessToken: event.token ?? '',
-      userId: event.userId,
-    );
-
-    return emit(
-      AuthenticationState.authenticated(
-        userId: event.userId,
-        token: event.token ?? '',
-        loginType: event.loginType,
-        channelInfoData: detailChannel,
       ),
     );
   }

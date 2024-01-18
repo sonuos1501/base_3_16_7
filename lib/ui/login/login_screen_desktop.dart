@@ -1,6 +1,6 @@
 
+import 'package:base_3_16_7/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:theshowplayer/utils/locale/app_localization.dart';
 
 import '../../constants/app_theme.dart';
 

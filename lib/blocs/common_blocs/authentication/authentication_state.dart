@@ -12,7 +12,6 @@ class AuthenticationState with _$AuthenticationState {
     required int userId,
     required String token,
     required LoginType loginType,
-    ChannelInfoData? channelInfoData,
   }) = Authenticated;
 
   const factory AuthenticationState.unAuthenticated({ @Default(true) bool appNewIntall }) = UnAuthenticated;
