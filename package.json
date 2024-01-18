@@ -1,0 +1,25 @@
+{
+  "name": "theshowplayer",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "gen": "fvm flutter pub run build_runner build --delete-conflicting-outputs",
+    "clean" : "fvm flutter clean && fvm flutter pub get",
+    "pod" : "cd ios && rm -rf Podfile.lock && pod install",
+    "aab": "fvm flutter build bundle --flavor development -t lib/mains/main_development.dart",
+    "aab:stg": "fvm flutter build bundle --flavor staging -t lib/mains/main_staging.dart",
+    "aab:prod": "fvm flutter build bundle --flavor production lib/mains/main_production.dart",
+    "apk": "fvm flutter build apk --flavor development -t lib/mains/main_development.dart",
+    "apk:stg" : "fvm flutter build apk --flavor staging -t lib/mains/main_staging.dart",
+    "apk:prod" : "fvm flutter build apk --flavor production -t lib/mains/main_production.dart",
+    "amend" : "git add . && git commit --amend && git fetch origin develop && git rebase origin/develop"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
