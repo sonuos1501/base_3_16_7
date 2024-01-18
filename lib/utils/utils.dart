@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:clipboard/clipboard.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +16,12 @@ import 'package:latlong2/latlong.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
-import 'package:theshowplayer/constants/colors.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:uuid/uuid.dart';
 
+import '../constants/colors.dart';
 import 'Extends/ColorExtends.dart';
 import 'Extends/DoubleExtend.dart';
 import 'Extends/StringExtend.dart';
@@ -34,7 +33,6 @@ typedef VoidOnAction = void Function();
 typedef VoidOnActionInt = void Function(int value);
 
 class Utils {
-
   static String getUuid() {
     return const Uuid().v4();
   }
@@ -74,7 +72,8 @@ class Utils {
   }
 
   static bool isEmail(String em) {
-    const p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    const p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     final regExp = RegExp(p);
     return regExp.hasMatch(em);
   }
@@ -90,7 +89,8 @@ class Utils {
     pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
   }
 
-  static bool checkNewVersionWithOldVersion({required String oldVersion, required String newVersion}) {
+  static bool checkNewVersionWithOldVersion(
+      {required String oldVersion, required String newVersion}) {
     if (oldVersion.isEmpty || newVersion.isEmpty) {
       return false;
     }
@@ -244,33 +244,33 @@ class Utils {
       return ' ';
     }
 
-    final nameArray = nameString.replaceAll(RegExp(r'\s+\b|\b\s'), ' ').split(' ');
-    final initials = ((nameArray[0])[0]) + (nameArray.length == 1 ? ' ' : (nameArray[nameArray.length - 1])[0]);
+    final nameArray =
+        nameString.replaceAll(RegExp(r'\s+\b|\b\s'), ' ').split(' ');
+    final initials = (nameArray[0][0]) +
+        (nameArray.length == 1 ? ' ' : nameArray[nameArray.length - 1][0]);
 
     return initials;
   }
 
-  static void showToast(BuildContext context, String message, {bool status = true}) {
+  static void showToast(BuildContext context, String message,
+      {bool status = true}) {
     Fluttertoast.cancel();
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: status
-        ? AppColors.green58C732
-        : AppColors.redC8160C,
+      backgroundColor: status ? AppColors.green58C732 : AppColors.redC8160C,
       fontSize: 12,
     );
   }
 
-  static void showToastCenter(BuildContext context, String message, {bool status = true}) {
+  static void showToastCenter(BuildContext context, String message,
+      {bool status = true}) {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      backgroundColor: status
-        ? AppColors.green58C732
-        : AppColors.redC8160C,
+      backgroundColor: status ? AppColors.green58C732 : AppColors.redC8160C,
       fontSize: 12,
     );
   }
@@ -297,16 +297,21 @@ class Utils {
     if (price == null) {
       return '';
     }
-    return NumberFormat.currency(locale: 'eu', decimalDigits: 2, symbol: '').format(price).replaceAll(',00', '');
+    return NumberFormat.currency(locale: 'eu', decimalDigits: 2, symbol: '')
+        .format(price)
+        .replaceAll(',00', '');
     // final oCcy = NumberFormat("#,##0.00", "VN");
     // var string = oCcy.format(price);
     // return string;
   }
 
   static String getUrlInString(String text) {
-    final urlRegExp = RegExp(r'((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?');
+    final urlRegExp = RegExp(
+        r'((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?');
     final matches = urlRegExp.allMatches(text);
-    final url = matches.isEmpty ? '' : text.substring(matches.first.start, matches.first.end);
+    final url = matches.isEmpty
+        ? ''
+        : text.substring(matches.first.start, matches.first.end);
     return !url.contains('http') && url.isNotEmpty ? 'https://$url' : url;
   }
 
@@ -441,7 +446,7 @@ class Utils {
       'ỳ',
       'ỷ',
       'ỹ',
-      'ỵ'
+      'ỵ',
     ];
     final arr2 = [
       'a',
@@ -510,12 +515,13 @@ class Utils {
       'y',
       'y',
       'y',
-      'y'
+      'y',
     ];
 
     for (var i = 0; i < arr1.length; i++) {
       textNew = textNew.replaceAll(arr1[i], arr2[i]);
-      textNew = textNew.replaceAll(arr1[i].toUpperCase(), arr2[i].toUpperCase());
+      textNew =
+          textNew.replaceAll(arr1[i].toUpperCase(), arr2[i].toUpperCase());
     }
     return textNew;
   }
@@ -539,11 +545,13 @@ class Utils {
   }
 
   static String decodePhone(String phoneNumber) {
-    phoneNumber = phoneNumber.replaceRange(phoneNumber.length - 3, phoneNumber.length, '***');
+    phoneNumber = phoneNumber.replaceRange(
+        phoneNumber.length - 3, phoneNumber.length, '***');
     return phoneNumber;
   }
 
-  static String getFullPhoneWithCountryCode({required String countryCode, required String phoneNumber}) {
+  static String getFullPhoneWithCountryCode(
+      {required String countryCode, required String phoneNumber}) {
     var phone = phoneNumber;
     if (phoneNumber.isNotEmpty) {
       final split = phoneNumber.substring(0, 1);
@@ -613,8 +621,8 @@ class Utils {
         //identifier = build.androidId; //UUID for Android
         return build.androidId;
       } else if (Platform.isIOS) {
-       final build = await deviceInfoPlugin.iosInfo;
-       // identifier = data.identifierForVendor; //UUID for iOS
+        final build = await deviceInfoPlugin.iosInfo;
+        // identifier = data.identifierForVendor; //UUID for iOS
         return build.identifierForVendor;
       }
     } on PlatformException {
@@ -644,9 +652,11 @@ class Utils {
 
   //lấy random String theo số lượng ký tự
   static String getRandomString({required int length}) {
-    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    const chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     final rnd = Random();
-    return String.fromCharCodes(Iterable.generate(length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+    return String.fromCharCodes(Iterable.generate(
+        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
   }
 
   static String getFileExtension({required String fileName}) {
@@ -662,11 +672,15 @@ class Utils {
     if (fullName.isNotEmpty) {
       final array = fullName.split(' ');
       if (array.length <= 1) {
-        info..firstName = fullName.trim()
-        ..lastName = '';
+        info
+          ..firstName = fullName.trim()
+          ..lastName = '';
       } else {
-        info..firstName = array[array.length - 1]
-        ..lastName = fullName.substring(0, fullName.length - info.firstName.length).trim();
+        info
+          ..firstName = array[array.length - 1]
+          ..lastName = fullName
+              .substring(0, fullName.length - info.firstName.length)
+              .trim();
       }
     }
     return info;
@@ -693,9 +707,11 @@ class Utils {
     }
 
     for (final exp in [
-      RegExp(r'^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$'),
-      RegExp(r'^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$'),
-      RegExp(r'^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$')
+      RegExp(
+          r'^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$'),
+      RegExp(
+          r'^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$'),
+      RegExp(r'^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$'),
     ]) {
       final match = exp.firstMatch(url);
       if (match != null && match.groupCount >= 1) {
@@ -753,7 +769,8 @@ class Utils {
   }
 
   //lấy giá trị trong param url get
-  static String? getValueInParamUrl({required String? url, required String key}) {
+  static String? getValueInParamUrl(
+      {required String? url, required String key}) {
     if (url == null) {
       return null;
     }
@@ -765,7 +782,8 @@ class Utils {
   }
 
   //lấy text quá số ký tự
-  static String? getTextOverWithLength({required String? text, required int length}) {
+  static String? getTextOverWithLength(
+      {required String? text, required int length}) {
     if (text != null) {
       if (text.trim().length < length + 1) {
         return text;
@@ -827,7 +845,8 @@ class Utils {
       }
       while (sizeResult > 4) {
         percentQuality = ((4 / sizeResult) * 100).round();
-        result = await FlutterNativeImage.compressImage(file.path, quality: percentQuality, percentage: 80);
+        result = await FlutterNativeImage.compressImage(file.path,
+            quality: percentQuality, percentage: 80);
         sizeResult = (result.lengthSync()) / (1024 * 1024);
       }
       return result;
@@ -838,7 +857,8 @@ class Utils {
   }
 
   //thoát số màn hình
-  static void popCountScreen(BuildContext context, int countScreen, { Object? result }) {
+  static void popCountScreen(BuildContext context, int countScreen,
+      {Object? result}) {
     var count = 0;
     while (count < countScreen) {
       Navigator.of(context).pop(result);
@@ -856,12 +876,15 @@ class Utils {
     var isInPolygon = false;
 
     for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      if ((((polygon[i].latitude <= l.latitude)
-        && (l.latitude < polygon[j].latitude))
-        || ((polygon[j].latitude <= l.latitude)
-        && (l.latitude < polygon[i].latitude))) 
-        && (l.longitude < (polygon[j].longitude - polygon[i].longitude) * (l.latitude - polygon[i].latitude)
-        /(polygon[j].latitude - polygon[i].latitude) + polygon[i].longitude)) {
+      if ((((polygon[i].latitude <= l.latitude) &&
+                  (l.latitude < polygon[j].latitude)) ||
+              ((polygon[j].latitude <= l.latitude) &&
+                  (l.latitude < polygon[i].latitude))) &&
+          (l.longitude <
+              (polygon[j].longitude - polygon[i].longitude) *
+                      (l.latitude - polygon[i].latitude) /
+                      (polygon[j].latitude - polygon[i].latitude) +
+                  polygon[i].longitude)) {
         isInPolygon = !isInPolygon;
       }
     }
@@ -932,7 +955,8 @@ class Utils {
   }
 
   static void copy(BuildContext context, String content, {String? message}) {
-    FlutterClipboard.copy(content).then((value) => showToast(context, message ?? 'Sao chép thành công'));
+    FlutterClipboard.copy(content)
+        .then((value) => showToast(context, message ?? 'Sao chép thành công'));
   }
 
   static String getTimeAgo(DateTime? dateTime) {
@@ -1019,7 +1043,6 @@ class Utils {
     list.insert(index2, element);
     return list;
   }
-
 }
 
 class _UserNameInfo {

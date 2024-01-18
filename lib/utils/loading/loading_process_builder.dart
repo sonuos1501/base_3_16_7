@@ -1,12 +1,9 @@
 // ignore_for_file: inference_failure_on_function_invocation
-
 import 'package:flutter/material.dart';
-import 'package:theshowplayer/di/action_method_locator.dart';
-
+import '../../di/action_method_locator.dart';
 import '../../widgets/loading/loading_view.dart';
 
 abstract class LoadingProcessBuilder {
-
   static bool _isShowingDialog = false;
 
   static void showProgressDialog() {

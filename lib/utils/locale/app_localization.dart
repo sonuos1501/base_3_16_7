@@ -5,9 +5,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:theshowplayer/utils/custom_log/custom_log.dart';
-
 import '../../models/language/Language.dart';
+import '../custom_log/custom_log.dart';
 
 // supported languages
 final List<Language> supportedLanguages = [
@@ -17,7 +16,6 @@ final List<Language> supportedLanguages = [
 ];
 
 class AppLocalizations {
-
   // constructor
   AppLocalizations(this.locale);
   // localization variables
@@ -26,7 +24,7 @@ class AppLocalizations {
 
   // Static member to have a simple access to the delegate from the MaterialApp
   static const LocalizationsDelegate<AppLocalizations> delegate =
-  _AppLocalizationsDelegate();
+      _AppLocalizationsDelegate();
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
@@ -39,11 +37,14 @@ class AppLocalizations {
   Future<bool> load() async {
     // Load the language JSON file from the "lang" folder
     final jsonString =
-    await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
+        await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     localizedStrings = jsonMap.map((key, value) {
-      return MapEntry(key, value.toString().replaceAll(r"\'", "'").replaceAll(r'\t', ' '),);
+      return MapEntry(
+        key,
+        value.toString().replaceAll(r"\'", "'").replaceAll(r'\t', ' '),
+      );
     });
 
     return true;
@@ -59,7 +60,6 @@ class AppLocalizations {
 // In this case, the localized strings will be gotten in an AppLocalizations object
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {
-
   // This delegate instance will never change (it doesn't even have fields!)
   // It can provide a constant constructor.
   const _AppLocalizationsDelegate();
@@ -69,7 +69,10 @@ class _AppLocalizationsDelegate
   @override
   bool isSupported(Locale locale) {
     // Include all of your supported language codes here
-    return supportedLanguages.map((e) => e.locale).toList().contains(locale.languageCode);
+    return supportedLanguages
+        .map((e) => e.locale)
+        .toList()
+        .contains(locale.languageCode);
   }
 
   @override
@@ -88,7 +91,7 @@ extension Trans on String {
   String tr(BuildContext context) {
     try {
       return AppLocalizations.of(context).translate(this);
-    } catch(e) {
+    } catch (e) {
       logError(e.toString());
       return this;
     }

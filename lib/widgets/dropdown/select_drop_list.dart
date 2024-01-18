@@ -1,22 +1,19 @@
-
-
 // ignore_for_file: cast_nullable_to_non_nullable
 
+import 'package:base_3_16_7/utils/locale/app_localization.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:theshowplayer/constants/assets.dart';
-import 'package:theshowplayer/constants/dimens.dart';
-import 'package:theshowplayer/utils/locale/app_localization.dart';
-
 import '../../constants/app_theme.dart';
+import '../../constants/assets.dart';
+import '../../constants/dimens.dart';
 import '../../utils/utils.dart';
 import '../divider/divider.dart';
 import 'build_dropdown_item.dart';
 
-class DropdownItem extends Equatable{
-  const DropdownItem({ required this.content});
+class DropdownItem extends Equatable {
+  const DropdownItem({required this.content});
 
   final String content;
 
@@ -31,7 +28,6 @@ class DropdownItemWithId {
 }
 
 class SelectDropList extends StatefulWidget {
-
   const SelectDropList({
     super.key,
     required this.content,
@@ -54,8 +50,8 @@ class SelectDropList extends StatefulWidget {
   State<SelectDropList> createState() => _SelectDropListState();
 }
 
-class _SelectDropListState extends State<SelectDropList> with SingleTickerProviderStateMixin {
-
+class _SelectDropListState extends State<SelectDropList>
+    with SingleTickerProviderStateMixin {
   TextEditingController searchEditCtrl = TextEditingController();
 
   @override
@@ -67,7 +63,8 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    final selectedItems = widget.content.split('|').map((e) => e.trim()).toList();
+    final selectedItems =
+        widget.content.split('|').map((e) => e.trim()).toList();
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
         isExpanded: true,
@@ -75,14 +72,16 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
         searchInnerWidgetHeight: widget.usingSearch ? Dimens.dimens_50 : null,
         searchController: widget.usingSearch ? searchEditCtrl : null,
         searchMatchFn: (item, searchValue) {
-          return Utils.nonUnicode(item.value ?? '').toLowerCase().contains(searchValue.toLowerCase());
+          return Utils.nonUnicode(item.value ?? '')
+              .toLowerCase()
+              .contains(searchValue.toLowerCase());
         },
         hint: Text(
           widget.hintText,
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
-            color: Theme.of(context).colorScheme.onTertiaryContainer,
-            fontWeight: AppThemeData.regular,
-          ),
+                color: Theme.of(context).colorScheme.onTertiaryContainer,
+                fontWeight: AppThemeData.regular,
+              ),
           overflow: TextOverflow.ellipsis,
         ),
         selectedItemBuilder: (context) {
@@ -92,30 +91,41 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
               child: Text(
                 selectedItems.join(', '),
                 style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
-                  fontWeight: AppThemeData.medium,
-                ),
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      fontWeight: AppThemeData.medium,
+                    ),
                 overflow: TextOverflow.ellipsis,
               ),
             );
           }).toList();
         },
-        items: widget.listItem.toSet()
-          .map((item) => DropdownMenuItem<String>(
-            enabled: widget.enable,
-            value: item.content.trim(),
-            child: BuildDropdownItem(
-              content: item.content.trim(),
-              status: selectedItems.contains(item.content),
-            ),
-          ),)
-          .toList(),
-        value: widget.content == '' ? null : widget.content.split('|').map((e) => e.trim()).last,
+        items: widget.listItem
+            .toSet()
+            .map(
+              (item) => DropdownMenuItem<String>(
+                enabled: widget.enable,
+                value: item.content.trim(),
+                child: BuildDropdownItem(
+                  content: item.content.trim(),
+                  status: selectedItems.contains(item.content),
+                ),
+              ),
+            )
+            .toList(),
+        value: widget.content == ''
+            ? null
+            : widget.content.split('|').map((e) => e.trim()).last,
         onChanged: (value) {
-          final content = widget.listItem.firstWhere(
-            (element) => element.content.toLowerCase().trim() == (value as String).toLowerCase(),
-          ).content;
-          final index = widget.listItem.indexWhere((element) => element.content.toLowerCase().trim() == content.toLowerCase().trim());
+          final content = widget.listItem
+              .firstWhere(
+                (element) =>
+                    element.content.toLowerCase().trim() ==
+                    (value as String).toLowerCase(),
+              )
+              .content;
+          final index = widget.listItem.indexWhere((element) =>
+              element.content.toLowerCase().trim() ==
+              content.toLowerCase().trim());
           widget.onChange(index);
         },
         icon: SvgPicture.asset(
@@ -127,13 +137,16 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
         buttonPadding: const EdgeInsets.only(right: Dimens.dimens_14),
         buttonDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.dimens_12),
-          border: widget.haveBorder ? Border.all(
-            color: Theme.of(context).colorScheme.onTertiaryContainer,
-          ) : null,
+          border: widget.haveBorder
+              ? Border.all(
+                  color: Theme.of(context).colorScheme.onTertiaryContainer,
+                )
+              : null,
           color: Theme.of(context).colorScheme.surface,
         ),
         itemHeight: Dimens.dimens_40,
-        itemPadding: const EdgeInsets.only(left: Dimens.dimens_14, right: Dimens.dimens_14),
+        itemPadding: const EdgeInsets.only(
+            left: Dimens.dimens_14, right: Dimens.dimens_14),
         dropdownMaxHeight: Dimens.dimens_200,
         dropdownDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.dimens_12),
@@ -164,19 +177,21 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
               child: TextField(
                 controller: searchEditCtrl,
                 style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
-                  fontWeight: AppThemeData.regular,
-                ),
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      fontWeight: AppThemeData.regular,
+                    ),
                 // onChanged: _onChangedSearch,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   hintText: 'search'.tr(context),
                   hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.onTertiaryContainer,
-                    fontWeight: AppThemeData.regular,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        color:
+                            Theme.of(context).colorScheme.onTertiaryContainer,
+                        fontWeight: AppThemeData.regular,
+                      ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   isDense: true,
                 ),
               ),
@@ -187,5 +202,4 @@ class _SelectDropListState extends State<SelectDropList> with SingleTickerProvid
       ],
     );
   }
-
 }

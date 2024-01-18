@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
           initial: Splash.new,
           loading: Splash.new,
           fail: (_) => const SizedBox.shrink(),
-          authenticated: (_, __, ___, ____) {
+          authenticated: (_, __, ___) {
             // Future.delayed(
             //     Duration.zero,
             //     () => navigation

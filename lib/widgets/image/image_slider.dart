@@ -3,14 +3,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:theshowplayer/constants/assets.dart';
 
+import '../../constants/assets.dart';
 import '../button/common_button.dart';
 import 'cache_image.dart';
 
-
 class ImageSlider extends StatefulWidget {
-
   const ImageSlider({
     super.key,
     required this.images,
@@ -129,9 +127,12 @@ class _ImageSliderState extends State<ImageSlider> {
       child: Row(
         children: List.generate(widget.images.length, (index) {
           return Container(
-            margin: index != widget.images.length -1 ? const EdgeInsets.only(right: 4) : null,
+            margin: index != widget.images.length - 1
+                ? const EdgeInsets.only(right: 4)
+                : null,
             child: CircleAvatar(
-              backgroundColor: index == _currentIndex ? Colors.white : Colors.grey,
+              backgroundColor:
+                  index == _currentIndex ? Colors.white : Colors.grey,
               radius: 3,
             ),
           );
@@ -144,7 +145,8 @@ class _ImageSliderState extends State<ImageSlider> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: ColoredBox(
-        color: widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+        color:
+            widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
         child: Center(
           child: SvgPicture.asset(
             Assets.icErrorLoadingImage,

@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:theshowplayer/constants/dimens.dart';
 
+import '../../constants/dimens.dart';
 import '../divider/divider.dart';
 
 class BottomSheetStrikeThrough extends StatelessWidget {
@@ -29,7 +27,10 @@ class BottomSheetStrikeThrough extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surfaceTint,
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(Dimens.dimens_16), topRight: Radius.circular(Dimens.dimens_16)),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(Dimens.dimens_16),
+              topRight: Radius.circular(Dimens.dimens_16),
+            ),
           ),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -46,12 +47,12 @@ class BottomSheetStrikeThrough extends StatelessWidget {
   }
 
   Widget _divider(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(bottom: Dimens.dimens_10),
-    child: CustomDivider(
-      height: Dimens.dimens_03,
-      width: ScreenUtil().setWidth(Dimens.dimens_140),
-      color: Theme.of(context).colorScheme.surfaceVariant,
-      borderRadius: Dimens.dimens_100,
-    ),
-  );
+        padding: const EdgeInsets.only(bottom: Dimens.dimens_10),
+        child: CustomDivider(
+          height: Dimens.dimens_03,
+          width: ScreenUtil().setWidth(Dimens.dimens_140),
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          borderRadius: Dimens.dimens_100,
+        ),
+      );
 }

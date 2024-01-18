@@ -1,5 +1,5 @@
 //
-// ignore_for_file: type_annotate_public_apis, always_declare_return_types, strict_raw_type
+// ignore_for_file: type_annotate_public_apis, always_declare_return_types, strict_raw_type, inference_failure_on_function_return_type
 
 import 'dart:io';
 
@@ -11,8 +11,6 @@ import '../utils.dart';
 /// Helper class for device related operations.
 ///
 class DeviceUtils {
-
-  // ignore: inference_failure_on_function_return_type
   ///
   /// hides the keyboard if its already open
   ///
@@ -26,9 +24,9 @@ class DeviceUtils {
   ///
   static double getScaledSize(BuildContext context, double scale) =>
       scale *
-          (MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.width
-              : MediaQuery.of(context).size.height);
+      (MediaQuery.of(context).orientation == Orientation.portrait
+          ? MediaQuery.of(context).size.width
+          : MediaQuery.of(context).size.height);
 
   ///
   /// accepts a double [scale] and returns scaled sized based on the screen
@@ -46,7 +44,7 @@ class DeviceUtils {
 
   static String? deviceName;
   static String? deviceVersion;
-  static String? deviceId;//duy nhất khi cài app
+  static String? deviceId; //duy nhất khi cài app
 
   static Future initData() async {
     final deviceInfo = DeviceInfoPlugin();

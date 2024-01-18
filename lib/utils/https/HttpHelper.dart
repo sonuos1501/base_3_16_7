@@ -3,6 +3,7 @@
 
 import 'dart:io';
 
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http_parser/http_parser.dart';

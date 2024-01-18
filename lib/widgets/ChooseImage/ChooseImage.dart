@@ -3,25 +3,23 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:base_3_16_7/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_crop/image_crop.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:theshowplayer/di/action_method_locator.dart';
-import 'package:theshowplayer/utils/bottom_sheet/BottomSheetUtil.dart';
-import 'package:theshowplayer/utils/locale/app_localization.dart';
-import 'package:theshowplayer/widgets/bottom_sheet/bottom_sheet_strikethrough.dart';
-import 'package:theshowplayer/widgets/divider/divider.dart';
-
 import '../../constants/app_theme.dart';
+import '../../di/action_method_locator.dart';
+import '../../utils/bottom_sheet/BottomSheetUtil.dart';
 import '../../utils/utils.dart';
+import '../bottom_sheet/bottom_sheet_strikethrough.dart';
+import '../divider/divider.dart';
 
 export 'dart:io';
 
 typedef VoidOnChooseImage = void Function(File image);
 
 class ChooseImage {
-
   ChooseImage({
     required this.context,
     this.onActionTakePicture,
@@ -60,9 +58,9 @@ class ChooseImage {
               child: Text(
                 'profile_mg9'.tr(context),
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
-                  fontWeight: AppThemeData.regular,
-                ),
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      fontWeight: AppThemeData.regular,
+                    ),
               ),
             ),
           ),
@@ -82,9 +80,9 @@ class ChooseImage {
               child: Text(
                 'profile_mg10'.tr(context),
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
-                  fontWeight: AppThemeData.regular,
-                ),
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      fontWeight: AppThemeData.regular,
+                    ),
               ),
             ),
           ),
@@ -93,9 +91,12 @@ class ChooseImage {
     );
   }
 
-  Widget _divider(BuildContext context) => CustomDivider(height: 0.5, color: Theme.of(context).colorScheme.onTertiaryContainer);
+  Widget _divider(BuildContext context) => CustomDivider(
+        height: 0.5,
+        color: Theme.of(context).colorScheme.onTertiaryContainer,
+      );
 
-  Future<File?> compressFile(File file) async {
+  Future<XFile?> compressFile(File file) async {
     final filePath = file.absolute.path;
 
     // Create output file path
@@ -118,7 +119,10 @@ class ChooseImage {
     }
     final osVersion = Platform.operatingSystemVersion;
     debugPrint('osVersion $osVersion');
-    if (isMultiImage && imageSource == ImageSource.gallery && Platform.isIOS && Utils.getFirstVersionOS() < 14) {
+    if (isMultiImage &&
+        imageSource == ImageSource.gallery &&
+        Platform.isIOS &&
+        Utils.getFirstVersionOS() < 14) {
       XFile? xFile;
       try {
         final picker = ImagePicker();
@@ -136,15 +140,17 @@ class ChooseImage {
         await Future.delayed(const Duration(milliseconds: 100));
         onHideLoading?.call();
 
-        await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PhotoPickerAndCropPage(
-            file: File(xFile!.path),
-            onCropImage: (imageFileCrop) {
-              onChooseImage?.call(imageFileCrop);
-              onChooseMultiImage?.call([imageFileCrop]);
-            },
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PhotoPickerAndCropPage(
+              file: File(xFile!.path),
+              onCropImage: (imageFileCrop) {
+                onChooseImage?.call(imageFileCrop);
+                onChooseMultiImage?.call([imageFileCrop]);
+              },
+            ),
           ),
-        ),);
+        );
       } else {
         await Future.delayed(const Duration(milliseconds: 100));
         onHideLoading?.call();
@@ -189,15 +195,17 @@ class ChooseImage {
         await Future.delayed(const Duration(milliseconds: 100));
         onHideLoading?.call();
 
-        await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PhotoPickerAndCropPage(
-            file: File(xFile!.path),
-            onCropImage: (imageFileCrop) {
-              onChooseImage?.call(imageFileCrop);
-              onChooseMultiImage?.call([imageFileCrop]);
-            },
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PhotoPickerAndCropPage(
+              file: File(xFile!.path),
+              onCropImage: (imageFileCrop) {
+                onChooseImage?.call(imageFileCrop);
+                onChooseMultiImage?.call([imageFileCrop]);
+              },
+            ),
           ),
-        ),);
+        );
       } else {
         await Future.delayed(const Duration(milliseconds: 100));
         onHideLoading?.call();
@@ -211,8 +219,11 @@ class ChooseImage {
 typedef VoidOnCropImage = void Function(File fileCrop);
 
 class PhotoPickerAndCropPage extends StatefulWidget {
-
-  const PhotoPickerAndCropPage({super.key, required this.file, this.onCropImage});
+  const PhotoPickerAndCropPage({
+    super.key,
+    required this.file,
+    this.onCropImage,
+  });
   final File file;
   final VoidOnCropImage? onCropImage;
 
@@ -289,7 +300,7 @@ class _PhotoPickerAndCropPageState extends State<PhotoPickerAndCropPage> {
               //_buildOpenImage(),
             ],
           ),
-        )
+        ),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:theshowplayer/widgets/button/contained_button.dart';
 
 import '../button/common_button.dart';
+import '../button/contained_button.dart';
 import 'cache_image.dart';
 
 class ViewImage extends StatefulWidget {
@@ -43,7 +43,8 @@ class _ViewImageState extends State<ViewImage> {
                 ),
                 CacheImage(
                   image: widget.images,
-                  size: Size(double.infinity, MediaQuery.of(context).size.height * .78),
+                  size: Size(double.infinity,
+                      MediaQuery.of(context).size.height * .78),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -59,7 +60,8 @@ class _ViewImageState extends State<ViewImage> {
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
-                                .copyWith(color: Theme.of(context).primaryColor),
+                                .copyWith(
+                                    color: Theme.of(context).primaryColor),
                             textAlign: TextAlign.center,
                           ),
                         ),

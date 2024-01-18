@@ -1,16 +1,13 @@
 // ignore_for_file: constant_identifier_names, inference_failure_on_function_return_type
-
 import 'package:flutter/material.dart';
-import 'package:theshowplayer/utils/utils.dart';
-
 import '../../models/common/item.dart';
 import '../../models/regex/regex_config.dart';
+import '../../utils/utils.dart';
 import 'basic_text_field.dart';
 
 enum BorderType { NONE, OUTLINE }
 
 class ACTextField extends StatelessWidget {
-
   const ACTextField({
     super.key,
     required this.controller,
@@ -35,14 +32,16 @@ class ACTextField extends StatelessWidget {
   final bool haveAsterisk;
   final Widget? suffixIcon;
   final FocusNode? focusNode;
-  final Function(int?,String)? onChange;
+  final Function(int?, String)? onChange;
   final bool isError;
 
   @override
   Widget build(BuildContext context) {
     return RawAutocomplete<Item>(
       focusNode: focusNode,
-      fieldViewBuilder:(context, textEditingController, focusNode, onFieldSubmitted) => BasicTextField(
+      fieldViewBuilder:
+          (context, textEditingController, focusNode, onFieldSubmitted) =>
+              BasicTextField(
         regexConfig: regexConfig,
         controller: controller,
         focusNode: focusNode,
@@ -81,11 +80,14 @@ class ACTextField extends StatelessWidget {
                         focusNode!.unfocus();
                       }
                       if (onChange != null) {
-                        onChange!(option.id,option.ten ?? '');
+                        onChange!(option.id, option.ten ?? '');
                       }
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
                       child: Text(option.ten ?? ''),
                     ),
                   );
@@ -95,9 +97,10 @@ class ACTextField extends StatelessWidget {
           ),
         );
       },
-      optionsBuilder: (textEditingValue) => listItem.where((element) => 
-        Utils.convertVNtoEN(element.ten ?? '')
-        .contains(Utils.convertVNtoEN(textEditingValue.text.trim())),),
+      optionsBuilder: (textEditingValue) => listItem.where(
+        (element) => Utils.convertVNtoEN(element.ten ?? '')
+            .contains(Utils.convertVNtoEN(textEditingValue.text.trim())),
+      ),
       textEditingController: controller,
     );
   }
