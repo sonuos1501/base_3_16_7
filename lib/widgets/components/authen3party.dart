@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../constants/app_theme.dart';
-import '../../constants/assets.dart';
 import '../../constants/dimens.dart';
 import '../button/cs_icon_button.dart';
 import '../divider/divider.dart';

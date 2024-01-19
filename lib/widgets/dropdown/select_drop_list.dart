@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constants/app_theme.dart';
-import '../../constants/assets.dart';
 import '../../constants/dimens.dart';
 import '../../utils/utils.dart';
 import '../divider/divider.dart';

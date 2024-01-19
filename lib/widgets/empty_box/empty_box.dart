@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../constants/app_theme.dart';
-import '../../constants/assets.dart';
 import '../../constants/dimens.dart';
 
 class EmptyBox extends StatelessWidget {

@@ -2,7 +2,8 @@ targets:
   $default:
     sources:
       - lib/**
-      - $package$
+      # - $package$
+      - assets/**
       - graphql/**
       - schema.graphql
     builders:
