@@ -51,6 +51,11 @@ flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*
 dart run flutter_native_splash:create --flavors development,staging,production
 ```
 
+### Changed name packages
+```shell script
+flutter pub run change_app_package_name:main com.new.package.name
+```
+
 ### Gen Key Hash Android
 
 ```shell script
