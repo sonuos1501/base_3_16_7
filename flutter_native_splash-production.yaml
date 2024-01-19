@@ -1,5 +1,4 @@
 flutter_native_splash:
   background_image: "assets/images/splash_screen.png"
-  fill: false
   ios_content_mode: scaleAspectFit
   android_gravity: fill

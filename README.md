@@ -48,7 +48,7 @@ flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*
 
 ### Changed splash screen app
 ```shell script
-dart run flutter_native_splash:create --flavors flutter_native_splash*
+dart run flutter_native_splash:create --flavors development,staging,production
 ```
 
 ### Gen Key Hash Android
