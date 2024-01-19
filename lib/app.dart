@@ -1,5 +1,4 @@
-
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,17 +36,23 @@ class App extends StatelessWidget {
               builder: (context, lang) {
                 return AnnotatedRegion<SystemUiOverlayStyle>(
                   value: theme.isDarkMode
-                    ? SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent)
-                    : SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+                      ? SystemUiOverlayStyle.light
+                          .copyWith(statusBarColor: Colors.transparent)
+                      : SystemUiOverlayStyle.dark
+                          .copyWith(statusBarColor: Colors.transparent),
                   child: MaterialApp(
-                    debugShowCheckedModeBanner: env == EnvValue.development,
+                    debugShowCheckedModeBanner: !kReleaseMode,
                     title: Strings.appName,
-                    theme: theme.isDarkMode ? AppThemeData.darkThemeData : AppThemeData.lightThemeData,
+                    theme: theme.isDarkMode
+                        ? AppThemeData.darkThemeData
+                        : AppThemeData.lightThemeData,
                     navigatorKey: navigation.navigatorKey,
                     locale: Locale(lang.language.locale ?? 'en'),
                     supportedLocales: supportedLanguages
-                      .map((language) => Locale(language.locale!, language.code))
-                      .toList(),
+                        .map(
+                          (language) => Locale(language.locale!, language.code),
+                        )
+                        .toList(),
                     localizationsDelegates: const [
                       // A class which loads the translations from JSON files
                       AppLocalizations.delegate,
