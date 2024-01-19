@@ -473,11 +473,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -654,11 +655,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -679,11 +681,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -758,11 +761,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -853,11 +857,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -943,11 +948,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_development.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1038,11 +1044,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_staging.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).stg";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).stg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1133,11 +1140,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_staging.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).stg";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).stg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1223,11 +1231,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_staging.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).stg";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).stg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1318,11 +1327,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_production.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).prod";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1413,11 +1423,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_production.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).prod";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1503,11 +1514,12 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = "$(FLUTTER_APPLICATION_PATH)/lib/mains/main_production.dart";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = com.son.app;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER).prod";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(INFOPLIST_KEY_CFBundleDisplayName).prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
