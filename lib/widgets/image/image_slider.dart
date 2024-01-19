@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../gen/assets.gen.dart';
 import '../button/common_button.dart';
 import 'cache_image.dart';
 
@@ -147,7 +148,7 @@ class _ImageSliderState extends State<ImageSlider> {
             widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
         child: Center(
           child: SvgPicture.asset(
-            Assets.icErrorLoadingImage,
+            Assets.icons.icErrorLoadingImage.path,
             height: 80,
             color: Theme.of(context).disabledColor,
           ),

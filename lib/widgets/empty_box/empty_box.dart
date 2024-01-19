@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../constants/app_theme.dart';
 import '../../constants/dimens.dart';
+import '../../gen/assets.gen.dart';
 
 class EmptyBox extends StatelessWidget {
   const EmptyBox({super.key, required this.title});
@@ -14,7 +15,7 @@ class EmptyBox extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(Assets.empty),
+          Assets.images.empty.image(),
           const Gap(Dimens.dimens_15),
           Container(
             constraints: const BoxConstraints(maxWidth: 300),

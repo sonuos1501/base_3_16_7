@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../gen/assets.gen.dart';
+
 class CacheImage extends StatelessWidget {
   const CacheImage({
     super.key,
@@ -70,7 +72,7 @@ class CacheImage extends StatelessWidget {
                       height: double.infinity,
                       child: Center(
                         child: SvgPicture.asset(
-                          errorLoadingImage ?? Assets.icErrorLoadingImage,
+                          errorLoadingImage ?? Assets.icons.icErrorLoadingImage.path,
                           height: min(80, size.height * .65),
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
@@ -94,7 +96,7 @@ class CacheImage extends StatelessWidget {
                       height: double.infinity,
                       child: Center(
                         child: SvgPicture.asset(
-                          errorLoadingImage ?? Assets.icErrorLoadingImage,
+                          errorLoadingImage ?? Assets.icons.icErrorLoadingImage.path,
                           height: min(80, size.height * .65),
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),

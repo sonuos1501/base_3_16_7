@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 
 import '../../constants/app_theme.dart';
 import '../../constants/dimens.dart';
+import '../../gen/assets.gen.dart';
 import '../button/cs_icon_button.dart';
 import '../divider/divider.dart';
 
@@ -51,7 +52,7 @@ class Authen3Party extends StatelessWidget {
       children: [
         Expanded(
           child: CsIconButton(
-            image: Assets.icGoogle,
+            image: Assets.icons.icGoogle.path,
             height: sizeIcon,
             onPress: onPressGoogle,
           ),
@@ -59,7 +60,7 @@ class Authen3Party extends StatelessWidget {
         const Gap(20),
         Expanded(
           child: CsIconButton(
-            image: Assets.icKaKaoTalk,
+            image: Assets.icons.icKakaotalk.path,
             height: sizeIcon,
             onPress: onPressKaKaoTalk,
           ),
@@ -67,7 +68,7 @@ class Authen3Party extends StatelessWidget {
         const Gap(20),
         Expanded(
           child: CsIconButton(
-            image: Assets.icNaver,
+            image: Assets.icons.icNaver.path,
             height: sizeIcon,
             onPress: onPressNaver,
           ),

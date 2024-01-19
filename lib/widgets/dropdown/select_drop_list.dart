@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constants/app_theme.dart';
 import '../../constants/dimens.dart';
+import '../../gen/assets.gen.dart';
 import '../../utils/utils.dart';
 import '../divider/divider.dart';
 import 'build_dropdown_item.dart';
@@ -128,7 +129,7 @@ class _SelectDropListState extends State<SelectDropList>
           widget.onChange(index);
         },
         icon: SvgPicture.asset(
-          Assets.icDropDown,
+          Assets.icons.icDropdown.path,
           width: Dimens.dimens_24,
           height: Dimens.dimens_24,
         ),

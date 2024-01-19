@@ -24,7 +24,14 @@ dart pub global activate flutter_gen
 ```
 
 # build gen
+``` shell script
 [fvm] flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+# Create assets.gen.dart run shell when call shell generate above
+``` shell script
+fluttergen -c pubspec.yaml
+```
 
 ### Debug
 

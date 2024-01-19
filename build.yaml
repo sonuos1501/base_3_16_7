@@ -3,7 +3,6 @@ targets:
     sources:
       - lib/**
       # - $package$
-      - assets/**
       - graphql/**
       - schema.graphql
     builders:

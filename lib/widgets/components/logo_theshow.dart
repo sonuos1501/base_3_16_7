@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 
-import '../../constants/assets.dart';
+import '../../gen/assets.gen.dart';
 
 class LogoTheShow extends StatelessWidget {
   const LogoTheShow({
@@ -10,6 +9,6 @@ class LogoTheShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(Assets.logoTheShowPlayer);
+    return Assets.logo.logoTheshowplayer.image();
   }
 }

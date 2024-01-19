@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../blocs/common_blocs/authentication/authentication_bloc.dart';
-import '../../constants/assets.dart';
+import '../../gen/assets.gen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -54,7 +53,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Image.asset(Assets.logoOnlyIcon)),
+      body: Center(child: Assets.logo.logoOnlyIcon.image()),
     );
   }
 }

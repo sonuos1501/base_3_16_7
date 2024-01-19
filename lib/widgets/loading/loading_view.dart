@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../gen/assets.gen.dart';
+
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 
@@ -7,7 +9,7 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        Assets.icLoading,
+        Assets.gif.icLoading.path,
         width: 70,
         fit: BoxFit.contain,
       ),
