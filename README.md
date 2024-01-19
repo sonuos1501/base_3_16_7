@@ -42,10 +42,15 @@ flutter run --debug --flavor production -t lib/mains/main_production.dart
 ```
 
 ### Changed icon app
-
 ```shell script
 flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*
 ```
+
+### Changed splash screen app
+```shell script
+dart run flutter_native_splash:create --flavors flutter_native_splash*
+```
+
 ### Gen Key Hash Android
 
 ```shell script
@@ -67,9 +72,6 @@ flutter pub get
 pod repo update
 ```
 
-# account test
-test1: Owner:  9000966 - Hogehoge
-stg: Owner: 0117562 - Hogehoge
 
 # config Firebase CLI
 ```
@@ -89,39 +91,3 @@ flutter run --release --flavor staging -t lib/mains/main_staging.dart
 flutter run --release --flavor production -t lib/mains/main_production.dart
 ```
 
-- Structure of Project
-- State management (bloc + freezed)
-- Network (graphql + gen)
-- DI (get it)
-- Config firebase (crash analytics, push notification)
-- Navigation
-- Validation
-- Refresh/ Load more
-- common view (textfield, ....)
-
-# account
-email: ntd160296@gmail.com
-pw: 123456
-
-# Included modules:
-
-1. Common API: Graphql (done)
-2. Authorization
-   - login/ logout/ change pass (done)
-   - login Facebook, google, apple (open)
-3. Common View
-   - Theme - Appbar. (appbar done, theme open)
-   - Dashboard. (done)
-   - Scroll View with refresh/ load more (open)
-   - Web view (not need)
-4. Util
-   - Navigation, (done)
-   - Validate (done)
-   - Download/ upload (open)
-   - Refresh/ Load more (open)
-5. Notification (done android)
-6. Take picture (done)
-7. Google Analytis (done)
-8. OTP/ Capcha (open)
-9. Qr code (open)
-10. Play video (open)
