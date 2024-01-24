@@ -17,7 +17,7 @@ class MultipleScreenUtil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (contex, constraints) {
+      builder: (context, constraints) {
         log('Max width: ${constraints.maxWidth}');
         if (constraints.maxWidth >= 1100) {
           return desktops;
