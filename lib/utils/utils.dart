@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, depend_on_referenced_packages, library_private_types_in_public_api, prefer_single_quotes, type_annotate_public_apis, inference_failure_on_untyped_parameter, parameter_assignments, always_declare_return_types, inference_failure_on_function_return_type, avoid_catches_without_on_clauses, only_throw_errors, join_return_with_assignment, avoid_double_and_int_checks, avoid_slow_async_io
+// ignore_for_file: file_names, depend_on_referenced_packages, library_private_types_in_public_api, prefer_single_quotes, type_annotate_public_apis, inference_failure_on_untyped_parameter, parameter_assignments, always_declare_return_types, inference_failure_on_function_return_type, avoid_catches_without_on_clauses, only_throw_errors, join_return_with_assignment, avoid_double_and_int_checks, avoid_slow_async_io, use_build_context_synchronously
 
 import 'dart:convert';
 import 'dart:io';
@@ -89,8 +89,10 @@ class Utils {
     pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
   }
 
-  static bool checkNewVersionWithOldVersion(
-      {required String oldVersion, required String newVersion}) {
+  static bool checkNewVersionWithOldVersion({
+    required String oldVersion,
+    required String newVersion,
+  }) {
     if (oldVersion.isEmpty || newVersion.isEmpty) {
       return false;
     }
@@ -252,8 +254,11 @@ class Utils {
     return initials;
   }
 
-  static void showToast(BuildContext context, String message,
-      {bool status = true}) {
+  static void showToast(
+    BuildContext context,
+    String message, {
+    bool status = true,
+  }) {
     Fluttertoast.cancel();
     Fluttertoast.showToast(
       msg: message,
@@ -264,8 +269,11 @@ class Utils {
     );
   }
 
-  static void showToastCenter(BuildContext context, String message,
-      {bool status = true}) {
+  static void showToastCenter(
+    BuildContext context,
+    String message, {
+    bool status = true,
+  }) {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
@@ -307,7 +315,8 @@ class Utils {
 
   static String getUrlInString(String text) {
     final urlRegExp = RegExp(
-        r'((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?');
+      r'((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?',
+    );
     final matches = urlRegExp.allMatches(text);
     final url = matches.isEmpty
         ? ''
@@ -546,12 +555,17 @@ class Utils {
 
   static String decodePhone(String phoneNumber) {
     phoneNumber = phoneNumber.replaceRange(
-        phoneNumber.length - 3, phoneNumber.length, '***');
+      phoneNumber.length - 3,
+      phoneNumber.length,
+      '***',
+    );
     return phoneNumber;
   }
 
-  static String getFullPhoneWithCountryCode(
-      {required String countryCode, required String phoneNumber}) {
+  static String getFullPhoneWithCountryCode({
+    required String countryCode,
+    required String phoneNumber,
+  }) {
     var phone = phoneNumber;
     if (phoneNumber.isNotEmpty) {
       final split = phoneNumber.substring(0, 1);
@@ -655,8 +669,12 @@ class Utils {
     const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     final rnd = Random();
-    return String.fromCharCodes(Iterable.generate(
-        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+    return String.fromCharCodes(
+      Iterable.generate(
+        length,
+        (_) => chars.codeUnitAt(rnd.nextInt(chars.length)),
+      ),
+    );
   }
 
   static String getFileExtension({required String fileName}) {
@@ -708,9 +726,11 @@ class Utils {
 
     for (final exp in [
       RegExp(
-          r'^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$'),
+        r'^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$',
+      ),
       RegExp(
-          r'^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$'),
+        r'^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$',
+      ),
       RegExp(r'^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$'),
     ]) {
       final match = exp.firstMatch(url);
@@ -769,8 +789,10 @@ class Utils {
   }
 
   //lấy giá trị trong param url get
-  static String? getValueInParamUrl(
-      {required String? url, required String key}) {
+  static String? getValueInParamUrl({
+    required String? url,
+    required String key,
+  }) {
     if (url == null) {
       return null;
     }
@@ -782,8 +804,10 @@ class Utils {
   }
 
   //lấy text quá số ký tự
-  static String? getTextOverWithLength(
-      {required String? text, required int length}) {
+  static String? getTextOverWithLength({
+    required String? text,
+    required int length,
+  }) {
     if (text != null) {
       if (text.trim().length < length + 1) {
         return text;
@@ -845,8 +869,11 @@ class Utils {
       }
       while (sizeResult > 4) {
         percentQuality = ((4 / sizeResult) * 100).round();
-        result = await FlutterNativeImage.compressImage(file.path,
-            quality: percentQuality, percentage: 80);
+        result = await FlutterNativeImage.compressImage(
+          file.path,
+          quality: percentQuality,
+          percentage: 80,
+        );
         sizeResult = (result.lengthSync()) / (1024 * 1024);
       }
       return result;
@@ -857,8 +884,11 @@ class Utils {
   }
 
   //thoát số màn hình
-  static void popCountScreen(BuildContext context, int countScreen,
-      {Object? result}) {
+  static void popCountScreen(
+    BuildContext context,
+    int countScreen, {
+    Object? result,
+  }) {
     var count = 0;
     while (count < countScreen) {
       Navigator.of(context).pop(result);
