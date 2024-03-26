@@ -22,6 +22,10 @@ samples, guidance on mobile development, and a full API reference.
 brew install FlutterGen/tap/fluttergen
 dart pub global activate flutter_gen
 ```
+# Fix version flutter
+``` shell script
+[fvm] flutter pub cache repair
+```
 
 # build gen
 ``` shell script
